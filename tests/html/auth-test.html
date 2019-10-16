@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <script type="text/javascript">
+    function openPageWithDelay() {
+      let login = document.getElementById("LoginUsername").value;
+      let password = document.getElementById("LoginPassword").value;
+      let url = "empty_page.html?login=" + login + "&password=" + password;
+      setTimeout(function() {
+        window.open(url, "_self", false);
+      }, 250);
+    }
+  </script>
+
+  <body>
+    <h4>Login form:</h4>
+    <input type="text" placeholder="USERNAME / E-MAIL" id="LoginUsername" />
+    <input type="text" placeholder="PASSWORD" id="LoginPassword" />
+    <input
+      type="button"
+      value="ENTER"
+      id="loginBtn"
+      onClick="openPageWithDelay()"
+    />
+
+    <h4>Logout form:</h4>
+    <button
+      class="x-btn-text sm-logout-btn"
+      id="InfoButton"
+      onclick="document.getElementById('LogoutButton').disabled = false;"
+    >
+      User info
+    </button>
+
+    <button
+      class="x-btn-text sm-logout-btn"
+      id="LogoutButton"
+      onclick="document.getElementById('LogoutHref').click()"
+      disabled
+    >
+      Logout
+    </button>
+
+    <a
+      class="x-btn-text sm-logout-btn"
+      id="LogoutHref"
+      onclick="confirm('Do you really want to logout?')"
+      href="empty_page.html?logout"
+    >
+    </a>
+  </body>
+</html>

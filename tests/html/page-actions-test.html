@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <script type="text/javascript">
+    function openPageWithDelay() {
+      setTimeout(function() {
+        window.open("empty_page.html", "_self", false);
+      }, 250);
+    }
+    function showElementWithDelay() {
+      setTimeout(function() {
+        document.getElementById("old_elem_id").id = "new_elem_id";
+      }, 500);
+    }
+    function showElementsAfter450ms() {
+      setTimeout(function() {
+        document.getElementById("div_id1").classList.add("newclass");
+        document.getElementById("div_id2").classList.add("newclass");
+        document.getElementById("div_id3").classList.add("newclass");
+      }, 450);
+    }
+  </script>
+
+  <body>
+    <h4>Move to the page with delay:</h4>
+    <input type="button" id="open_empty_page" onClick="openPageWithDelay()" />
+
+    <h4>Frame with field to enter:</h4>
+    <iframe
+      src="page-actions-frame.html"
+      id="frame_id"
+      title="Visual text editor, RichText"
+    ></iframe>
+
+    <h4>Link to find by text (innerHtml):</h4>
+    <a href="empty_page.html" tabindex="-1" id="j3_3_anchor">
+      <i role="presentation"></i>
+      .Done
+    </a>
+
+    <h4>Element appears after some time:</h4>
+    <button id="showElementAfter500ms" onclick="showElementWithDelay()">
+      id changes on click:
+    </button>
+    <div id="old_elem_id">
+      <div>wild element appears!</div>
+    </div>
+
+    <h4>Text input:</h4>
+    <label id="label-linked-with-input" for="real_input_id"></label>
+    <input id="real_input_id" type="text" />
+
+    <a id="X374_t" href="empty_page.html">History&nbsp;</a>
+
+    <h4>Elements will appear after some time:</h4>
+    <button id="showElementsAfter450ms" onclick="showElementsAfter450ms()">
+      On click will be added class 'newclass':
+    </button>
+    <div id="div_id1" class="oldclass"></div>
+    <div id="div_id2" class="oldclass"></div>
+    <div id="div_id3" class="oldclass"></div>
+
+    <h4>Progress bar that will be hidden:</h4>
+    <button
+      id="hideLoadingDiv"
+      onclick="setTimeout(function() {
+        document.getElementById('ext-gen-top603').remove();
+    }, 250);"
+    >
+      Click and loading bar will dissapear
+    </button>
+    <div
+      class="ext-el-mask-msg x-mask-short-loading"
+      id="ext-gen-top603"
+      style="left: 407px; top: 437px; visibility: visible;"
+    >
+      <div>Loading...</div>
+    </div>
+
+    <h4>Load indicator that will not disappear:</h4>
+    <div
+      class="ext-el-mask-msg x-mask-loading-forever"
+      id="ext-gen-top604"
+      style="left: 407px; top: 437px; visibility: visible;"
+    >
+      <div>Loading...</div>
+    </div>
+  </body>
+</html>

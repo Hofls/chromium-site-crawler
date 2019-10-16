@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<a
+  href="downloadArchive"
+  id="downloadButton"
+  style="
+    left: 40%;
+    position: absolute;
+"
+>
+  Download previous archive</a
+>
+<form
+  id="uploadbanner"
+  enctype="multipart/form-data"
+  method="post"
+  action="launch"
+  style="
+    position: absolute;
+    top: 45%;
+    left: 40%;
+    "
+>
+  <div>
+    <label for="regime"> Mode: </label>
+
+    <select id="regime" name="regime_name" style="margin-bottom: 15px;">
+      <option value="default">Default (all together)</option>
+      <option value="dates">Only dates</option>
+      <option value="users">Only users</option>
+    </select>
+    <label id="hint"></label>
+    <div>
+      <input
+        id="fileupload"
+        name="myfile"
+        type="file"
+        style="
+    margin-bottom: 15px; width: 100%;
+    "
+        onchange="let noFiles = document.getElementById('fileupload').files.length <= 0; document.getElementById('submit').disabled = noFiles;"
+        accept=".txt"
+      />
+
+      <input type="submit" value="Launch!" id="submit" disabled="" />
+    </div>
+  </div>
+</form>

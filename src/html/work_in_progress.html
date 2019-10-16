@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+  function stop() {
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "stop", false);
+    xmlHttp.send();
+    document.getElementById("stopButton").hidden = true;
+    document.getElementById("stopText").hidden = false;
+  }
+  function hideAll() {
+    document.getElementById("progressBar").hidden = true;
+    document.getElementById("loadingImg").hidden = true;
+    document.getElementById("stopButton").hidden = true;
+    document.getElementById("stopText").hidden = true;
+    document.getElementById("downloadButton").hidden = true;
+  }
+  function checkStatus() {
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", "getProgress", false);
+    xmlHttp.send();
+    let progress = JSON.parse(xmlHttp.responseText);
+    document.getElementById("progressBar").innerHTML =
+      "Processed " +
+      progress.processedCount +
+      " out of " +
+      progress.totalCount +
+      "<br>" +
+      " (minutes left: " +
+      progress.remainingTime +
+      ")";
+    if (progress.exception) {
+      hideAll();
+      document.getElementById("errorText").innerHTML = progress.exception;
+    } else if (progress.workInProgress === false) {
+      hideAll();
+      document.getElementById("downloadButton").hidden = false;
+    }
+  }
+  window.onload = checkStatus;
+  setInterval(checkStatus, 3000);
+</script>
+
+<div
+  style="top: 40%;left: 40%;width:15%;text-align: center;position: absolute;"
+>
+  <i id="progressBar"></i>
+  <img id="loadingImg" src="work_in_progress.svg" />
+  <button id="stopButton" onclick="stop()">Stop</button>
+  <i id="stopText" hidden>
+    Trying to stop...
+  </i>
+  <a href="downloadArchive" id="downloadButton" hidden> Download </a>
+  <i
+    id="errorText"
+    style="
+    color: #f15454;"
+  >
+  </i>
+</div>
